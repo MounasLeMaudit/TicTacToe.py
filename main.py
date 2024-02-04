@@ -18,56 +18,6 @@ def switch_player():
     else:
         current_player = 'X'
 
-
-def win_check(clicked_row, clicked_column):
-    count = 0
-    for i in range(3):
-        current_button = buttons[clicked_column][i]
-
-        if current_button['text'] == current_player:
-            count += 1
-    if count == 3:
-        print_winner()
-    
-    count = 0
-    for i in range(3):
-        current_button = buttons[i][clicked_row]
-
-        if current_button['text'] == current_player:
-            count += 1
-    if count == 3:
-        print_winner()
-    
-    count = 0
-    for i in range(3):
-        current_button = buttons[i][i]
-
-        if current_button['text'] == current_player:
-            count += 1
-    if count == 3:
-        print_winner()
-    
-    count = 0
-    for i in range(3):
-        current_button = buttons[2-i][i]
-
-        if current_button['text'] == current_player:
-            count += 1
-    if count == 3:
-        print_winner()
-
-    if win is False:
-        count = 0
-        for col in range(3):
-            for row in range(3):
-                current_button = buttons[col][row]
-                if current_button['text'] == 'X' or current_button['text'] == 'O':
-                    count += 1
-        print(count)
-        if count == 9:
-            print("Match nul")
-
-
 def x_or_o(j, i):
     print("click", j, i)
 
@@ -78,8 +28,8 @@ def x_or_o(j, i):
     win_check(j, i)
     switch_player()
 
-
 def grille():
+
     for i in range(3):
         buttons_tmp = []
         for j in range(3):
@@ -91,6 +41,59 @@ def grille():
             button.grid(row=j, column=i)
             buttons_tmp.append(button)
         buttons.append(buttons_tmp)
+
+def win_check(clicked_row, clicked_column):
+    count = 0
+    for i in range(3):
+        current_button = buttons[clicked_column][i]
+
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
+        print_winner()
+        exit()
+    
+    count = 0
+    for i in range(3):
+        current_button = buttons[i][clicked_row]
+
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
+        print_winner()
+        exit()
+    
+    count = 0
+    for i in range(3):
+        current_button = buttons[i][i]
+
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
+        print_winner()
+        exit()
+    
+    count = 0
+    for i in range(3):
+        current_button = buttons[2-i][i]
+
+        if current_button['text'] == current_player:
+            count += 1
+    if count == 3:
+        print_winner()
+        exit()
+
+    if win is False:
+        count = 0
+        for col in range(3):
+            for row in range(3):
+                current_button = buttons[col][row]
+                if current_button['text'] == 'X' or current_button['text'] == 'O':
+                    count += 1
+        print(count)
+        if count == 9:
+            print("Match nul")
+            exit()
 
 buttons = []
 current_player = 'X'
